@@ -3,7 +3,6 @@ package JDBC;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Random;
 
 public class Roles {
 	Connection myConn;

@@ -32,19 +32,22 @@ public class Main {
 		rolesTable.tableInsert();
 		
 		SprintBacklogs sprintBacklogsTable = new SprintBacklogs(myConn);
-		sprintBacklogsTable.tableInsert(0);
+		sprintBacklogsTable.tableInsert(22);
 		
 		SprintsStorage sprintsStorageTable = new SprintsStorage(myConn);
-		sprintsStorageTable.tableInsert(0);
+		sprintsStorageTable.tableInsert(21);
 		
 		Epics epicsTable = new Epics(myConn);
-		epicsTable.tableInsert(0);
+		epicsTable.tableInsert(20);
 		
 		Employees employeesTable = new Employees(myConn);
-		employeesTable.tableInsert(0);
+		employeesTable.tableInsert(15);
 		
 		Teams teamsTable = new Teams(myConn);
-		teamsTable.tableInsert(2);
+		teamsTable.tableInsert(15);
+		
+		Jobs jobsTable = new Jobs(myConn);
+		jobsTable.tableInsert(30);
 	}
 	
 }
