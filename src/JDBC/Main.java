@@ -55,8 +55,8 @@ public class Main {
 		Projects projectsTable = new Projects(myConn);
 		projectsTable.tableInsert(1);
 		
-		//UserStories userStoriesTable = new UserStories(myConn);
-		//userStoriesTable.tableInsert(3);
+		UserStories userStoriesTable = new UserStories(myConn);
+		userStoriesTable.tableInsert(3);
 	}
 	
 }
