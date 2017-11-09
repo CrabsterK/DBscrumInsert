@@ -60,6 +60,9 @@ public class Main {
 		
 		Sprints sprintsTable = new Sprints(myConn);
 		sprintsTable.tableInsert(3);
+
+		History history = new History(myConn);
+		history.tableInsert(50);
 	}
 	
 }
