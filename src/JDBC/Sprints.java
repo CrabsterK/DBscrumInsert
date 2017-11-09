@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class UserStories {
+public class Sprints {
 	Connection myConn;
 	PreparedStatement statement = null;
 	String sql = null;
@@ -15,17 +15,17 @@ public class UserStories {
 	StringBuilder sb = new StringBuilder();
 	Random random = new Random();
 	
-	public UserStories(Connection con) {
-		myConn = con;
+	public Sprints(Connection con) {
+		myConn=con;
 	}
 	
 	public void tableInsert(int amount) {
-		System.out.println("Inserting "+amount+" UserStories...");
+		System.out.println("Inserting "+amount+" Sprints...");
 		statement = null;
-		
 		ResultSet rs = null;
-		ArrayList<Integer> idProjectBacklogs = new ArrayList<Integer>();
-		sql = "SELECT IdProjectBacklog FROM projectbacklogs;";
+		
+		ArrayList<Integer> idProjects = new ArrayList<Integer>();
+		sql = "SELECT IdProject FROM projects;";
 		try {
 			statement = myConn.prepareStatement(sql);
 			rs = statement.executeQuery();
@@ -35,37 +35,16 @@ public class UserStories {
 		}
 		try {
 			while(rs.next()) {
-				int next = rs.getInt("IdProjectBacklog");
-				idProjectBacklogs.add(next);
+				int next = rs.getInt("IdProject");
+				idProjects.add(next);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		rs = null;
-		ArrayList<Integer> idEpics = new ArrayList<Integer>();
-		sql = "SELECT IdEpic FROM epics;";
-		try {
-			statement = myConn.prepareStatement(sql);
-			rs = statement.executeQuery();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			while(rs.next()) {
-				int next = rs.getInt("IdEpic");
-				idEpics.add(next);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		rs = null;
 		ArrayList<Integer> idSprintBacklogs = new ArrayList<Integer>();
-		sql = "SELECT IdSprintBacklog FROM sprintbacklogs";
+		sql = "SELECT IdSprintBacklog FROM sprintbacklogs;";
 		try {
 			statement = myConn.prepareStatement(sql);
 			rs = statement.executeQuery();
@@ -85,24 +64,24 @@ public class UserStories {
 		
 		for(int quantity = 1; quantity <= amount; quantity++) {
 			sb.setLength(0);
-			int test = random.nextInt(700 - 500) +1;
+			int test = random.nextInt(59) +1;
 			for (int i = 0; i < test; i++) {
 			    char c = chars[random.nextInt(chars.length)];
 			    sb.append(c);
 			}
-			String desc = sb.toString();
+			String name = sb.toString();
 			
-			int idE = idEpics.get(random.nextInt(idEpics.size()-1));
-			int idPB = idProjectBacklogs.get(random.nextInt(idProjectBacklogs.size()-1));
+			int time = random.nextInt(30) +1;
+			
+			int idP = idProjects.get(random.nextInt(idProjects.size()-1));
 			int idSB = idSprintBacklogs.get(random.nextInt(idSprintBacklogs.size()-1));
-			
-			sql = "INSERT INTO userstories (StoryDesc, IdProjectBacklog, IdEpic, IdSprintBacklog) VALUES (?, ?, ?,?);";
+			sql = "INSERT INTO sprints (SprintName, SprintTime, IdProject, IdSprintBacklog) VALUES (?, ?, ?,?);";
 			
 			try {
 				statement = myConn.prepareStatement(sql);
-				statement.setString(1, desc);
-				statement.setInt(2, idPB);
-				statement.setInt(3, idE);
+				statement.setString(1, name);
+				statement.setInt(2, time);
+				statement.setInt(3, idP);
 				statement.setInt(4, idSB);
 				statement.executeUpdate();
 			} catch (SQLException e1) {

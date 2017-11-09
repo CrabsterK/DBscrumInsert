@@ -57,6 +57,9 @@ public class Main {
 		
 		UserStories userStoriesTable = new UserStories(myConn);
 		userStoriesTable.tableInsert(3);
+		
+		Sprints sprintsTable = new Sprints(myConn);
+		sprintsTable.tableInsert(3);
 	}
 	
 }
