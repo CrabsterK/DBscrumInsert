@@ -19,7 +19,7 @@ public class SprintsStorage {
 	public void tableInsert(int amount) {
 		System.out.println("Inserting "+amount+" SprintsStorage...");
 		statement = null;
-		sql = "INSERT INTO sprintsstorage (SprintName,SprintTime,IdProjekt,IdSprintBacklog,ArchiveDate) VALUES (?, ?, ?, ?, ?);";
+		sql = "INSERT INTO sprintsstorage (SprintName,SprintTime,IdProject,IdSprintBacklog,ArchiveDate) VALUES (?, ?, ?, ?, ?);";
 		
 		char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 		StringBuilder sb = new StringBuilder();

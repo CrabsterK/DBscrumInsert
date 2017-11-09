@@ -37,6 +37,9 @@ public class Main {
 		SprintsStorage sprintsStorageTable = new SprintsStorage(myConn);
 		sprintsStorageTable.tableInsert(21);
 		
+		ProjectBacklogs projectBacklogsTable = new ProjectBacklogs(myConn);
+		projectBacklogsTable.tableInsert(20);
+		
 		Epics epicsTable = new Epics(myConn);
 		epicsTable.tableInsert(20);
 		
@@ -48,6 +51,12 @@ public class Main {
 		
 		Jobs jobsTable = new Jobs(myConn);
 		jobsTable.tableInsert(30);
+		
+		Projects projectsTable = new Projects(myConn);
+		projectsTable.tableInsert(1);
+		
+		//UserStories userStoriesTable = new UserStories(myConn);
+		//userStoriesTable.tableInsert(3);
 	}
 	
 }
