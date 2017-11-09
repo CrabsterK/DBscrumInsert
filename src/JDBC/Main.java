@@ -5,15 +5,20 @@ import java.sql.DriverManager;
 
 public class Main {
 	
-	private static String url = "jdbc:mysql://localhost:3306/scrum";
-	private static String user = "root";
-	private static String password = "root";
+	private static String url = "jdbc:mysql://sql11.freemysqlhosting.net/sql11204078";
+	private static String user = "sql11204078";
+	private static String password = "m5vyibFsDT";
+	
+	//private static String url = "jdbc:mysql://localhost:3306/scrum";
+	//private static String user = "root";
+	//private static String password = "root";
 	
 	public static void main(String[] args){
 		Connection myConn = null;
 		
 		try {
 			myConn = DriverManager.getConnection(url, user, password);
+			System.out.println("Initial OK");
 		}
 		catch(Exception e) {
 			e.printStackTrace();

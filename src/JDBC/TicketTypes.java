@@ -20,7 +20,7 @@ public class TicketTypes {
 		
 		for(int quantity = 0; quantity < tab.length; quantity++) {
 			
-			sql = "INSERT INTO tickettypes (TypeValue) VALUE (?)";
+			sql = "INSERT INTO TicketTypes (TypeValue) VALUE (?)";
 			try {
 				statement = myConn.prepareStatement(sql);
 				statement.setString(1, tab[quantity]);

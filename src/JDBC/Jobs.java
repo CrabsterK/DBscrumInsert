@@ -20,7 +20,7 @@ public class Jobs {
 		statement = null;
 		
 		ArrayList<Integer> idEmployees = null;
-		sql = "SELECT IdEmployer FROM employees;";
+		sql = "SELECT IdEmployer FROM Employees;";
 		try {
 			statement = myConn.prepareStatement(sql);
 			ResultSet rs = statement.executeQuery();
@@ -33,7 +33,7 @@ public class Jobs {
 		}
 		
 		ArrayList<Integer> idTeams = null;
-		sql = "SELECT IdTeam FROM teams;";
+		sql = "SELECT IdTeam FROM Teams;";
 		try {
 			statement = myConn.prepareStatement(sql);
 			ResultSet rs = statement.executeQuery();
@@ -45,7 +45,7 @@ public class Jobs {
 			e.printStackTrace();
 		}
 		
-		sql = "INSERT INTO jobs (IdEmployer, IdTeam) VALUES (?, ?);";
+		sql = "INSERT INTO Jobs (IdEmployer, IdTeam) VALUES (?, ?);";
 		
 		Random random = new Random();
 		for(int quantity = 1; quantity <= amount; quantity++) {

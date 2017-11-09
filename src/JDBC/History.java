@@ -58,7 +58,6 @@ public class History {
             int dayOfYear = randBetween(1, gc.getActualMaximum(Calendar.DAY_OF_YEAR));
             gc.set(Calendar.DAY_OF_YEAR, dayOfYear);
             String stDat = (gc.get(Calendar.YEAR) + "-" + (gc.get(Calendar.MONTH) + 1) + "-" + gc.get(Calendar.DAY_OF_MONTH));
-            System.out.println(stDat);
 
             int idSp = idSprints.get(random.nextInt(idSprints.size()));
             int idSt = idStatuses.get(random.nextInt(idStatuses.size()));

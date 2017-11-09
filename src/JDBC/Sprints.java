@@ -25,7 +25,7 @@ public class Sprints {
 		ResultSet rs = null;
 		
 		ArrayList<Integer> idProjects = new ArrayList<Integer>();
-		sql = "SELECT IdProject FROM projects;";
+		sql = "SELECT IdProject FROM Projects;";
 		try {
 			statement = myConn.prepareStatement(sql);
 			rs = statement.executeQuery();
@@ -44,7 +44,7 @@ public class Sprints {
 		}
 		
 		ArrayList<Integer> idSprintBacklogs = new ArrayList<Integer>();
-		sql = "SELECT IdSprintBacklog FROM sprintbacklogs;";
+		sql = "SELECT IdSprintBacklog FROM SprintBacklogs;";
 		try {
 			statement = myConn.prepareStatement(sql);
 			rs = statement.executeQuery();
@@ -75,7 +75,7 @@ public class Sprints {
 			
 			int idP = idProjects.get(random.nextInt(idProjects.size()-1));
 			int idSB = idSprintBacklogs.get(random.nextInt(idSprintBacklogs.size()-1));
-			sql = "INSERT INTO sprints (SprintName, SprintTime, IdProject, IdSprintBacklog) VALUES (?, ?, ?,?);";
+			sql = "INSERT INTO Sprints (SprintName, SprintTime, IdProject, IdSprintBacklog) VALUES (?, ?, ?,?);";
 			
 			try {
 				statement = myConn.prepareStatement(sql);

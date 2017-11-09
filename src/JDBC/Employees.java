@@ -22,7 +22,7 @@ public class Employees {
 		statement = null;
 		
 		ArrayList<Integer> idRoles = null;
-		sql = "SELECT IdRole FROM roles;";
+		sql = "SELECT IdRole FROM Roles;";
 		try {
 			statement = myConn.prepareStatement(sql);
 			ResultSet rs = statement.executeQuery();
@@ -34,7 +34,7 @@ public class Employees {
 			e.printStackTrace();
 		}
 		
-		sql = "INSERT INTO employees (Name, LastName, Email, IdRole) VALUES (?, ?, ?,?);";
+		sql = "INSERT INTO Employees (Name, LastName, Email, IdRole) VALUES (?, ?, ?,?);";
 		
 		char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 		StringBuilder sb = new StringBuilder();

@@ -17,7 +17,7 @@ public class Teams {
 	public void tableInsert(int amount) {
 		System.out.println("Inserting "+amount+" Teams...");
 		statement = null;
-		sql = "INSERT INTO teams (TeamName) VALUES (?);";
+		sql = "INSERT INTO Teams (TeamName) VALUES (?);";
 		
 		char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 		StringBuilder sb = new StringBuilder();

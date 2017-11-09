@@ -17,7 +17,7 @@ public class Epics {
 	public void tableInsert(int amount) {
 		System.out.println("Inserting "+amount+" Epics...");
 		statement = null;
-		sql = "INSERT INTO epics (EpicName, EpicDesc) VALUE (?, ?);";
+		sql = "INSERT INTO Epics (EpicName, EpicDesc) VALUE (?, ?);";
 		
 		char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 		StringBuilder sb = new StringBuilder();

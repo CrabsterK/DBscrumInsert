@@ -20,7 +20,7 @@ public class Roles {
 		
 		for(int quantity = 0; quantity < tab.length; quantity++) {
 			
-			sql = "INSERT INTO roles (RoleValue) VALUE (?)";
+			sql = "INSERT INTO Roles (RoleValue) VALUE (?)";
 			try {
 				statement = myConn.prepareStatement(sql);
 				statement.setString(1, tab[quantity]);

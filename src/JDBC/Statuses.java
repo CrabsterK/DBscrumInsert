@@ -19,11 +19,11 @@ public class Statuses {
 		statement = null;
 	
 	
-		sql = "INSERT INTO statuses (StatusValue) VALUE (?)";
+		sql = "INSERT INTO Statuses (StatusValue) VALUE (?)";
 		
 		for(int quantity = 0; quantity < tab.length; quantity++) {
 			
-			sql = "INSERT INTO statuses (StatusValue) VALUE (?)";
+			sql = "INSERT INTO Statuses (StatusValue) VALUE (?)";
 			try {
 				statement = myConn.prepareStatement(sql);
 				statement.setString(1, tab[quantity]);

@@ -22,7 +22,7 @@ public class States {
 		
 		for(int quantity = 0; quantity < tab.length; quantity++) {
 			
-			sql = "INSERT INTO states (StateValue) VALUE (?)";
+			sql = "INSERT INTO States (StateValue) VALUE (?)";
 			try {
 				statement = myConn.prepareStatement(sql);
 				statement.setString(1, tab[quantity]);
