@@ -2,20 +2,17 @@ package JDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Projects {
-	
+
 	Connection myConn;
 	PreparedStatement statement = null;
 	String sql = null;
-	char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-	StringBuilder sb = new StringBuilder();
 	Random random = new Random();
-	
+	DataGenerator dataGen = new DataGenerator();
 	
 	public Projects(Connection con) {
 		myConn = con;
@@ -23,69 +20,20 @@ public class Projects {
 	
 	public void tableInsert(int amount) {
 		System.out.println("Inserting "+amount+" Projects...");
-		statement = null;
-		
-		ResultSet rs = null;
-		ArrayList<Integer> idTeams = new ArrayList<Integer>();
 		sql = "SELECT IdTeam FROM Teams;";
-		try {
-			statement = myConn.prepareStatement(sql);
-			rs = statement.executeQuery();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			while(rs.next()) {
-				int next = rs.getInt("IdTeam");
-				idTeams.add(next);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		rs = null;
-		ArrayList<Integer> idProjectbacklogs = new ArrayList<Integer>();
+		ArrayList<Integer> idTeamList = dataGen.getIdList(myConn, sql, "IdTeam");
+
 		sql = "SELECT IdProjectBacklog FROM ProjectBacklogs;";
-		try {
-			statement = myConn.prepareStatement(sql);
-			rs = statement.executeQuery();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			while(rs.next()) {
-				int next = rs.getInt("IdProjectBacklog");
-				idProjectbacklogs.add(next);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		ArrayList<Integer> idPBList =  dataGen.getIdList(myConn, sql, "IdProjectBacklog");
+
+		sql = "INSERT INTO Projects (ProjectName, ProjectDesc, IdTeam, IdProjectBacklog) VALUES (?, ?, ?,?);";
+
 		for(int quantity = 1; quantity <= amount; quantity++) {
-			sb.setLength(0);
-			for (int i = 0; i < random.nextInt(49 - 1) + 1 ; i++) {
-			    char c = chars[random.nextInt(chars.length)];
-			    sb.append(c);
-			}
-			String name = sb.toString();
-			
-			int test = random.nextInt(700 - 500);
-			sb.setLength(0);
-			for (int i = 0; i < test; i++) {
-			    char c = chars[random.nextInt(chars.length)];
-			    sb.append(c);
-			}
-			String desc = sb.toString();
-			
-			int idT = idTeams.get(random.nextInt(idTeams.size()-1));
-			int idPB = idProjectbacklogs.get(random.nextInt(idProjectbacklogs.size()-1));
-			
-			sql = "INSERT INTO Projects (ProjectName, ProjectDesc, IdTeam, IdProjectBacklog) VALUES (?, ?, ?,?);";
-			
+			String name =  dataGen.makeWord(4, 9);
+			String desc = dataGen.makeDesc(8, 50);
+			int idT = idTeamList.get(random.nextInt(idTeamList.size()-1));
+			int idPB = idPBList.get(random.nextInt(idPBList.size()-1));
+
 			try {
 				statement = myConn.prepareStatement(sql);
 				statement.setString(1, name);

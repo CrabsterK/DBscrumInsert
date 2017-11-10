@@ -9,6 +9,7 @@ public class Teams {
 	Connection myConn;
 	PreparedStatement statement = null;
 	String sql = null;
+	DataGenerator dataGen = new DataGenerator();
 	
 	public Teams(Connection con){
 		myConn = con;
@@ -18,24 +19,14 @@ public class Teams {
 		System.out.println("Inserting "+amount+" Teams...");
 		statement = null;
 		sql = "INSERT INTO Teams (TeamName) VALUES (?);";
-		
-		char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-		StringBuilder sb = new StringBuilder();
-		Random random = new Random();
+
+
 		for(int quantity = 1; quantity <= amount; quantity++) {
-			
-			sb.setLength(0);
-			for (int i = 0; i < random.nextInt(49 - 1) + 1 ; i++) {
-			    char c = chars[random.nextInt(chars.length)];
-			    sb.append(c);
-			}
-			String teamname = sb.toString();
-			
-			
+			String name =dataGen.makeWord(4, 15);
+
 			try {
 				statement = myConn.prepareStatement(sql);
-				statement.setString(1, teamname);
-
+				statement.setString(1, name);
 				statement.executeUpdate();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
@@ -44,7 +35,4 @@ public class Teams {
 		System.out.println("Done");
 	}
 	
-	public static int randBetween(int start, int end) {
-        return start + (int)Math.round(Math.random() * (end - start));
-	}
 }

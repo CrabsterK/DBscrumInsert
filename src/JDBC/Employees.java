@@ -7,12 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 
-
 public class Employees {
 	Connection myConn;
 	PreparedStatement statement = null;
 	String sql = null;
-	
+	DataGenerator dataGen = new DataGenerator();
+	Random random = new Random();
+
 	public Employees(Connection con){
 		myConn = con;
 	}
@@ -20,56 +21,23 @@ public class Employees {
 	public void tableInsert(int amount) {
 		System.out.println("Inserting "+amount+" employers...");
 		statement = null;
-		
-		ArrayList<Integer> idRoles = null;
+
 		sql = "SELECT IdRole FROM Roles;";
-		try {
-			statement = myConn.prepareStatement(sql);
-			ResultSet rs = statement.executeQuery();
-			idRoles = new ArrayList<Integer>();
-			while(rs.next()) {
-				idRoles.add(rs.getInt("IdRole"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		ArrayList<Integer> idRolesList = dataGen.getIdList(myConn, sql, "IdRole");
 		
 		sql = "INSERT INTO Employees (Name, LastName, Email, IdRole) VALUES (?, ?, ?,?);";
-		
-		char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-		StringBuilder sb = new StringBuilder();
-		Random random = new Random();
+
 		for(int quantity = 1; quantity <= amount; quantity++) {
-			
-			sb.setLength(0);
-			for (int i = 0; i < random.nextInt(10 - 1) + 1 ; i++) {
-			    char c = chars[random.nextInt(chars.length)];
-			    sb.append(c);
-			}
-			String name = sb.toString();
-			
-			sb.setLength(0);
-			for (int i = 0; i < random.nextInt(60 - 1) + 1 ; i++) {
-			    char c = chars[random.nextInt(chars.length)];
-			    sb.append(c);
-			}
-			String lastname = sb.toString();
-			
-			sb.setLength(0);
-			for (int i = 0; i < random.nextInt(41 - 1) + 1 ; i++) {
-			    char c = chars[random.nextInt(chars.length)];
-			    sb.append(c);
-			}
-			sb.append("@mail.com");
-			String mail = sb.toString();
-			
-			int idRole = idRoles.get(random.nextInt(idRoles.size()-1));
-			
+			int idRole = idRolesList.get(random.nextInt(idRolesList.size()-1));
+			String name = dataGen.makeWord(4, 9);
+			String lastName = dataGen.makeWord(5,12);
+			String email = dataGen.makeWord(4, 9) + "@mail.com";
+
 			try {
 				statement = myConn.prepareStatement(sql);
 				statement.setString(1, name);
-				statement.setString(2, lastname);
-				statement.setString(3, mail);
+				statement.setString(2, lastName);
+				statement.setString(3, email);
 				statement.setInt(4, idRole);
 				statement.executeUpdate();
 			} catch (SQLException e1) {
