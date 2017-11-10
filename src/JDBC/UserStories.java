@@ -11,9 +11,8 @@ public class UserStories {
 	Connection myConn;
 	PreparedStatement statement = null;
 	String sql = null;
-	char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-	StringBuilder sb = new StringBuilder();
 	Random random = new Random();
+	DataGenerator dataGen = new DataGenerator();
 	
 	public UserStories(Connection con) {
 		myConn = con;
@@ -22,82 +21,24 @@ public class UserStories {
 	public void tableInsert(int amount) {
 		System.out.println("Inserting "+amount+" UserStories...");
 		statement = null;
-		
-		ResultSet rs = null;
-		ArrayList<Integer> idProjectBacklogs = new ArrayList<Integer>();
+
 		sql = "SELECT IdProjectBacklog FROM ProjectBacklogs;";
-		try {
-			statement = myConn.prepareStatement(sql);
-			rs = statement.executeQuery();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			while(rs.next()) {
-				int next = rs.getInt("IdProjectBacklog");
-				idProjectBacklogs.add(next);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		rs = null;
-		ArrayList<Integer> idEpics = new ArrayList<Integer>();
+		ArrayList<Integer> idProjectBacklogs = dataGen.getIdList(myConn, sql, "IdProjectBacklog");
+
 		sql = "SELECT IdEpic FROM Epics;";
-		try {
-			statement = myConn.prepareStatement(sql);
-			rs = statement.executeQuery();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			while(rs.next()) {
-				int next = rs.getInt("IdEpic");
-				idEpics.add(next);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		rs = null;
-		ArrayList<Integer> idSprintBacklogs = new ArrayList<Integer>();
+		ArrayList<Integer> idEpics = dataGen.getIdList(myConn, sql, "IdEpic");
+
 		sql = "SELECT IdSprintBacklog FROM SprintBacklogs";
-		try {
-			statement = myConn.prepareStatement(sql);
-			rs = statement.executeQuery();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			while(rs.next()) {
-				int next = rs.getInt("IdSprintBacklog");
-				idSprintBacklogs.add(next);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		ArrayList<Integer> idSprintBacklogs = dataGen.getIdList(myConn, sql, "IdSprintBacklog");
+
+		sql = "INSERT INTO UserStories (StoryDesc, IdProjectBacklog, IdEpic, IdSprintBacklog) VALUES (?, ?, ?,?);";
+
 		for(int quantity = 1; quantity <= amount; quantity++) {
-			sb.setLength(0);
-			int test = random.nextInt(700 - 500) +1;
-			for (int i = 0; i < test; i++) {
-			    char c = chars[random.nextInt(chars.length)];
-			    sb.append(c);
-			}
-			String desc = sb.toString();
-			
-			int idE = idEpics.get(random.nextInt(idEpics.size()-1));
-			int idPB = idProjectBacklogs.get(random.nextInt(idProjectBacklogs.size()-1));
-			int idSB = idSprintBacklogs.get(random.nextInt(idSprintBacklogs.size()-1));
-			
-			sql = "INSERT INTO UserStories (StoryDesc, IdProjectBacklog, IdEpic, IdSprintBacklog) VALUES (?, ?, ?,?);";
-			
+			String desc = dataGen.makeDesc(8, 50);
+			int idE = idEpics.get(random.nextInt(idEpics.size()));
+			int idPB = idProjectBacklogs.get(random.nextInt(idProjectBacklogs.size()));
+			int idSB = idSprintBacklogs.get(random.nextInt(idSprintBacklogs.size()));
+
 			try {
 				statement = myConn.prepareStatement(sql);
 				statement.setString(1, desc);
