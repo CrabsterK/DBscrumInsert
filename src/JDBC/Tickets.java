@@ -1,0 +1,61 @@
+package JDBC;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Tickets {
+    Connection myConn;
+    PreparedStatement statement = null;
+    String sql = null;
+    Random random = new Random();
+    DataGenerator dataGen = new DataGenerator();
+
+    public Tickets(Connection con) {
+        myConn=con;
+    }
+
+    public void tableInsert(int amount) {
+        System.out.println("Inserting "+amount+" Tickets...");
+        statement = null;
+
+        sql = "SELECT IdEmployer FROM Employees;";
+        ArrayList<Integer> idEmpList = dataGen.getIdList(myConn, sql, "IdEmployer");
+
+        sql = "SELECT IdSprint FROM Sprints;";
+        ArrayList<Integer> idSprintList = dataGen.getIdList(myConn, sql, "IdSprint");
+
+        sql = "SELECT IdType FROM TicketTypes;";
+        ArrayList<Integer> idPTyleList = dataGen.getIdList(myConn, sql, "IdType");
+
+        sql = "SELECT IdState FROM States;";
+        ArrayList<Integer> idStateList = dataGen.getIdList(myConn, sql, "IdState");
+
+
+
+        sql = "INSERT INTO Tickets (IdEmployer, IdSprint, IdType, IdState, TicketDesc) VALUES (?, ?, ?, ?, ?);";
+
+        for(int quantity = 1; quantity <= amount; quantity++) {
+            int idE = idEmpList.get(random.nextInt(idEmpList.size()));
+            int idSp = idSprintList.get(random.nextInt(idSprintList.size()));
+            int idT = idPTyleList.get(random.nextInt(idPTyleList.size()));
+            int idSt = idStateList.get(random.nextInt(idStateList.size()));
+            String desc = dataGen.makeDesc(8, 50);
+
+            try {
+                statement = myConn.prepareStatement(sql);
+                statement.setInt(1, idE);
+                statement.setInt(2, idSp);
+                statement.setInt(3, idT);
+                statement.setInt(4, idSt);
+                statement.setString(5, desc);
+                statement.executeUpdate();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+        System.out.println("DONE");
+    }
+}
