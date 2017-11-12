@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class DataGenerator {
 
-    final int nullProcent = 20;
+    final int nullPercent = 20;
     StringBuilder sb;
     Random random;
     final char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
