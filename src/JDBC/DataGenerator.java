@@ -11,6 +11,7 @@ import java.util.Random;
 
 public class DataGenerator {
 
+    final int nullProcent = 20;
     StringBuilder sb;
     Random random;
     final char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
@@ -28,6 +29,26 @@ public class DataGenerator {
         return sb.toString();
     }
 
+    public String makeWord(int minLength, int maxLength, int canBeNull) {
+        if(canBeNull == 1 && randBetween(1, 100) < nullProcent) {
+                return null;
+        }
+        else
+           return makeWord(minLength, maxLength);
+    }
+
+    public String makeEmail() {
+            return makeWord(4, 9) + "@mail.com";
+    }
+
+    public String makeEmail(int canBeNull) {
+        if(canBeNull == 1 && randBetween(1, 100) < nullProcent) {
+            return null;
+        }
+        else
+            return makeEmail();
+    }
+
     public String makeDesc(int minLength, int maxLength) {
         sb = new StringBuilder();
         random = new Random();
@@ -43,6 +64,14 @@ public class DataGenerator {
         return sb.toString();
     }
 
+    public String makeDesc(int minLength, int maxLength, int canBeNull) {
+        if(canBeNull == 1 && randBetween(1, 100) < nullProcent) {
+            return null;
+        }
+        else
+            return makeDesc(minLength, maxLength);
+    }
+
     public String makeDate(int minYear, int maxYear) {
         GregorianCalendar gc = new GregorianCalendar();
         int year = randBetween(minYear, maxYear);
@@ -51,10 +80,18 @@ public class DataGenerator {
         gc.set(Calendar.DAY_OF_YEAR, dayOfYear);
         return (gc.get(Calendar.YEAR) + "-" + (gc.get(Calendar.MONTH) + 1) + "-" + gc.get(Calendar.DAY_OF_MONTH));
     }
+    public String makeDate(int minYear, int maxYear, int canBeNull) {
+        if(canBeNull == 1 && randBetween(1, 100) < nullProcent) {
+            return null;
+        }
+        else
+            return makeDate(minYear, maxYear);
+    }
 
     public int randBetween(int start, int end) {
         return start + (int) Math.round(Math.random() * (end - start));
     }
+
 
     public ArrayList getIdList(Connection myConn, String sql, String column) {
         PreparedStatement statement;
@@ -78,5 +115,11 @@ public class DataGenerator {
             e.printStackTrace();
         }
         return idList;
+    }
+
+    public int getRandomId(ArrayList <Integer> idList){
+        random = new Random();
+        int id = idList.get(random.nextInt(idList.size()-1));
+        return id;
     }
 }
