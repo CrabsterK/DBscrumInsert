@@ -22,7 +22,7 @@ public class Teams {
 
 
 		for(int quantity = 1; quantity <= amount; quantity++) {
-			String name =dataGen.makeWord(4, 15);
+			String name =dataGen.makeWord(4, 15, 1);
 
 			try {
 				statement = myConn.prepareStatement(sql);

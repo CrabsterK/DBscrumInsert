@@ -30,8 +30,8 @@ public class History {
 
         Random random = new Random();
         for(int quantity = 1; quantity <= amount; quantity++) {
-            int idSp = idSprints.get(random.nextInt(idSprints.size()));
-            int idSt = idStatuses.get(random.nextInt(idStatuses.size()));
+            int idSp = dataGen.getRandomId(idSprints);
+            int idSt = dataGen.getRandomId(idStatuses);
             String date = dataGen.makeDate(2000, 2016);
 
             try {

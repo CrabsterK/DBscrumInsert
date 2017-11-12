@@ -46,7 +46,7 @@ public class Main {
 		projectBacklogsTable.tableInsert(20);
 
 		Epics epicsTable = new Epics(myConn);
-		epicsTable.tableInsert(20);
+		epicsTable.tableInsert(80);
 
 		Employees employeesTable = new Employees(myConn);
 		employeesTable.tableInsert(15);
@@ -70,7 +70,7 @@ public class Main {
 		history.tableInsert(50);
 
 		Tickets ticketsTable = new Tickets(myConn);
-		ticketsTable.tableInsert(120);
+		ticketsTable.tableInsert(10);
 	}
 	
 }

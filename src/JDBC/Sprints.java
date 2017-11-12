@@ -33,8 +33,8 @@ public class Sprints {
 
 		for(int quantity = 1; quantity <= amount; quantity++) {
 			String name = dataGen.makeWord(4, 15);
-			int idP = idProjects.get(random.nextInt(idProjects.size()));
-			int idSB = idSprintBacklogs.get(random.nextInt(idSprintBacklogs.size()));
+			int idP = dataGen.getRandomId(idProjects);
+			int idSB = dataGen.getRandomId(idSprintBacklogs);
 
 			
 			try {

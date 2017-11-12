@@ -30,15 +30,18 @@ public class Projects {
 
 		for(int quantity = 1; quantity <= amount; quantity++) {
 			String name =  dataGen.makeWord(4, 9);
-			String desc = dataGen.makeDesc(8, 50);
-			int idT = idTeamList.get(random.nextInt(idTeamList.size()-1));
-			int idPB = idPBList.get(random.nextInt(idPBList.size()-1));
+			String desc = dataGen.makeDesc(8, 50, 1);
+			int idT = dataGen.getRandomId(idTeamList);
+			int idPB = dataGen.getRandomId(idPBList);
 
 			try {
 				statement = myConn.prepareStatement(sql);
 				statement.setString(1, name);
 				statement.setString(2, desc);
-				statement.setInt(3, idT);
+				if(dataGen.randBetween(1, 100) < dataGen.nullProcent) {
+					statement.setString(3, null);
+				}
+				else statement.setInt(3, idT);
 				statement.setInt(4, idPB);
 				statement.executeUpdate();
 			} catch (SQLException e1) {

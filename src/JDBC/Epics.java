@@ -20,8 +20,8 @@ public class Epics {
 		sql = "INSERT INTO Epics (EpicName, EpicDesc) VALUE (?, ?);";
 
 		for(int quantity = 1; quantity <= amount; quantity++) {
-			String name = dataGen.makeWord(4, 9);
-			String desc = dataGen.makeDesc(8, 50);
+			String name = dataGen.makeWord(4, 9, 1);
+			String desc = dataGen.makeDesc(8, 50, 1);
 
 			try {
 				statement = myConn.prepareStatement(sql);

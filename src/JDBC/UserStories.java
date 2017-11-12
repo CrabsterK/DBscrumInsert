@@ -35,16 +35,22 @@ public class UserStories {
 
 		for(int quantity = 1; quantity <= amount; quantity++) {
 			String desc = dataGen.makeDesc(8, 50);
-			int idE = idEpics.get(random.nextInt(idEpics.size()));
-			int idPB = idProjectBacklogs.get(random.nextInt(idProjectBacklogs.size()));
-			int idSB = idSprintBacklogs.get(random.nextInt(idSprintBacklogs.size()));
+			int idE = dataGen.getRandomId(idEpics);
+			int idPB = dataGen.getRandomId(idProjectBacklogs);
+			int idSB = dataGen.getRandomId(idSprintBacklogs);
 
 			try {
 				statement = myConn.prepareStatement(sql);
 				statement.setString(1, desc);
 				statement.setInt(2, idPB);
-				statement.setInt(3, idE);
-				statement.setInt(4, idSB);
+				if(dataGen.randBetween(1, 100) < dataGen.nullProcent) {
+					statement.setString(3, null);
+				}
+				else statement.setInt(3, idE);
+				if(dataGen.randBetween(1, 100) < dataGen.nullProcent) {
+					statement.setString(4, null);
+				}
+				else statement.setInt(4, idSB);
 				statement.executeUpdate();
 			} catch (SQLException e1) {
 				e1.printStackTrace();

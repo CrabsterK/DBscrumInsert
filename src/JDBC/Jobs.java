@@ -32,8 +32,8 @@ public class Jobs {
 		Random random = new Random();
 		for(int quantity = 1; quantity <= amount; quantity++) {
 					
-			int idT = idTeams.get(random.nextInt(idTeams.size()));
-			int idE = idEmployees.get(random.nextInt(idEmployees.size()));
+			int idT = dataGen.getRandomId(idTeams);
+			int idE = dataGen.getRandomId(idEmployees);
 			
 			try {
 				statement = myConn.prepareStatement(sql);

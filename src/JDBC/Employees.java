@@ -28,17 +28,20 @@ public class Employees {
 		sql = "INSERT INTO Employees (Name, LastName, Email, IdRole) VALUES (?, ?, ?,?);";
 
 		for(int quantity = 1; quantity <= amount; quantity++) {
-			int idRole = idRolesList.get(random.nextInt(idRolesList.size()-1));
+			int idRole = dataGen.getRandomId(idRolesList);
 			String name = dataGen.makeWord(4, 9);
 			String lastName = dataGen.makeWord(5,12);
-			String email = dataGen.makeWord(4, 9) + "@mail.com";
+			String email = dataGen.makeEmail(1);
 
 			try {
 				statement = myConn.prepareStatement(sql);
 				statement.setString(1, name);
 				statement.setString(2, lastName);
 				statement.setString(3, email);
-				statement.setInt(4, idRole);
+				if(dataGen.randBetween(1, 100) < dataGen.nullProcent) {
+					statement.setString(4, null);
+				}
+				else statement.setInt(4, idRole);
 				statement.executeUpdate();
 			} catch (SQLException e1) {
 				e1.printStackTrace();

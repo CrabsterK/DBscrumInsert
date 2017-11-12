@@ -38,18 +38,30 @@ public class Tickets {
         sql = "INSERT INTO Tickets (IdEmployer, IdSprint, IdType, IdState, TicketDesc) VALUES (?, ?, ?, ?, ?);";
 
         for(int quantity = 1; quantity <= amount; quantity++) {
-            int idE = idEmpList.get(random.nextInt(idEmpList.size()));
-            int idSp = idSprintList.get(random.nextInt(idSprintList.size()));
-            int idT = idPTyleList.get(random.nextInt(idPTyleList.size()));
-            int idSt = idStateList.get(random.nextInt(idStateList.size()));
+            int idE = dataGen.getRandomId(idEmpList);
+            int idSp = dataGen.getRandomId(idSprintList);
+            int idT = dataGen.getRandomId(idPTyleList);
+            int idSt = dataGen.getRandomId(idStateList);
             String desc = dataGen.makeDesc(8, 50);
 
             try {
                 statement = myConn.prepareStatement(sql);
-                statement.setInt(1, idE);
-                statement.setInt(2, idSp);
-                statement.setInt(3, idT);
-                statement.setInt(4, idSt);
+                if(dataGen.randBetween(1, 100) < dataGen.nullProcent) {
+                    statement.setString(1, null);
+                }
+                else statement.setInt(1, idE);
+                if(dataGen.randBetween(1, 100) < dataGen.nullProcent) {
+                    statement.setString(2, null);
+                }
+                else statement.setInt(2, idSp);
+                if(dataGen.randBetween(1, 100) < dataGen.nullProcent) {
+                    statement.setString(3, null);
+                }
+                else statement.setInt(3, idT);
+                if(dataGen.randBetween(1, 100) < dataGen.nullProcent) {
+                    statement.setString(4, null);
+                }
+                else statement.setInt(4, idSt);
                 statement.setString(5, desc);
                 statement.executeUpdate();
             } catch (SQLException e1) {
