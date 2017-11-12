@@ -43,11 +43,11 @@ public class UserStories {
 				statement = myConn.prepareStatement(sql);
 				statement.setString(1, desc);
 				statement.setInt(2, idPB);
-				if(dataGen.randBetween(1, 100) < dataGen.nullProcent) {
+				if(dataGen.randBetween(1, 100) < dataGen.nullPercent) {
 					statement.setString(3, null);
 				}
 				else statement.setInt(3, idE);
-				if(dataGen.randBetween(1, 100) < dataGen.nullProcent) {
+				if(dataGen.randBetween(1, 100) < dataGen.nullPercent) {
 					statement.setString(4, null);
 				}
 				else statement.setInt(4, idSB);

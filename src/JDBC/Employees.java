@@ -38,7 +38,7 @@ public class Employees {
 				statement.setString(1, name);
 				statement.setString(2, lastName);
 				statement.setString(3, email);
-				if(dataGen.randBetween(1, 100) < dataGen.nullProcent) {
+				if(dataGen.randBetween(1, 100) < dataGen.nullPercent) {
 					statement.setString(4, null);
 				}
 				else statement.setInt(4, idRole);

@@ -30,7 +30,7 @@ public class DataGenerator {
     }
 
     public String makeWord(int minLength, int maxLength, int canBeNull) {
-        if(canBeNull == 1 && randBetween(1, 100) < nullProcent) {
+        if(canBeNull == 1 && randBetween(1, 100) < nullPercent) {
                 return null;
         }
         else
@@ -42,7 +42,7 @@ public class DataGenerator {
     }
 
     public String makeEmail(int canBeNull) {
-        if(canBeNull == 1 && randBetween(1, 100) < nullProcent) {
+        if(canBeNull == 1 && randBetween(1, 100) < nullPercent) {
             return null;
         }
         else
@@ -65,7 +65,7 @@ public class DataGenerator {
     }
 
     public String makeDesc(int minLength, int maxLength, int canBeNull) {
-        if(canBeNull == 1 && randBetween(1, 100) < nullProcent) {
+        if(canBeNull == 1 && randBetween(1, 100) < nullPercent) {
             return null;
         }
         else
@@ -81,7 +81,7 @@ public class DataGenerator {
         return (gc.get(Calendar.YEAR) + "-" + (gc.get(Calendar.MONTH) + 1) + "-" + gc.get(Calendar.DAY_OF_MONTH));
     }
     public String makeDate(int minYear, int maxYear, int canBeNull) {
-        if(canBeNull == 1 && randBetween(1, 100) < nullProcent) {
+        if(canBeNull == 1 && randBetween(1, 100) < nullPercent) {
             return null;
         }
         else

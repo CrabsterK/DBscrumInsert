@@ -38,7 +38,7 @@ public class Projects {
 				statement = myConn.prepareStatement(sql);
 				statement.setString(1, name);
 				statement.setString(2, desc);
-				if(dataGen.randBetween(1, 100) < dataGen.nullProcent) {
+				if(dataGen.randBetween(1, 100) < dataGen.nullPercent) {
 					statement.setString(3, null);
 				}
 				else statement.setInt(3, idT);
