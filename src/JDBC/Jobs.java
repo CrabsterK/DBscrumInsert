@@ -28,17 +28,15 @@ public class Jobs {
 		ArrayList<Integer> idTeams = dataGen.getIdList(myConn, sql, "IdTeam");
 
 		sql = "INSERT INTO Jobs (IdEmployer, IdTeam) VALUES (?, ?);";
-		
-		Random random = new Random();
+
 		for(int quantity = 1; quantity <= amount; quantity++) {
-					
-			int idT = dataGen.getRandomId(idTeams);
 			int idE = dataGen.getRandomId(idEmployees);
-			
+			int idT = dataGen.getRandomId(idTeams);
+
 			try {
 				statement = myConn.prepareStatement(sql);
-				statement.setInt(1, idT);
-				statement.setInt(2, idE);
+				statement.setInt(1, idE);
+				statement.setInt(2, idT);
 				statement.executeUpdate();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
