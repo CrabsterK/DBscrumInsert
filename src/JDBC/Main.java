@@ -5,16 +5,10 @@ import java.sql.DriverManager;
 
 public class Main {
 	
-<<<<<<< HEAD
 	//private static String url = "jdbc:mysql://sql11.freemysqlhosting.net/sql11204078";
 	//private static String user = "sql11204078";
 	//private static String password = "m5vyibFsDT";
-=======
-//	private static String url = "jdbc:mysql://sql11.freemysqlhosting.net/sql11204078";
-//	private static String user = "sql11204078";
-//	private static String password = "m5vyibFsDT";
->>>>>>> 86e536d5cfea6292478113ee6ba465d7591972ec
-	
+
 	private static String url = "jdbc:mysql://localhost:3306/scrum";
 	private static String user = "root";
 	private static String password = "root";
@@ -43,40 +37,40 @@ public class Main {
 		rolesTable.tableInsert();
 
 		SprintBacklogs sprintBacklogsTable = new SprintBacklogs(myConn);
-		sprintBacklogsTable.tableInsert(22);
+		sprintBacklogsTable.tableInsert(1);
 
 		SprintsStorage sprintsStorageTable = new SprintsStorage(myConn);
-		sprintsStorageTable.tableInsert(21);
+		sprintsStorageTable.tableInsert(1);
 
 		ProjectBacklogs projectBacklogsTable = new ProjectBacklogs(myConn);
-		projectBacklogsTable.tableInsert(20);
+		projectBacklogsTable.tableInsert(1);
 
 		Epics epicsTable = new Epics(myConn);
-		epicsTable.tableInsert(80);
+		epicsTable.tableInsert(1);
 
 		Employees employeesTable = new Employees(myConn);
-		employeesTable.tableInsert(15);
+		employeesTable.tableInsert(1);
 
 		Teams teamsTable = new Teams(myConn);
-		teamsTable.tableInsert(15);
+		teamsTable.tableInsert(1);
 
 		Jobs jobsTable = new Jobs(myConn);
-		jobsTable.tableInsert(30);
+		jobsTable.tableInsert(1);
 
 		Projects projectsTable = new Projects(myConn);
-		projectsTable.tableInsert(4);
+		projectsTable.tableInsert(1);
 
 		UserStories userStoriesTable = new UserStories(myConn);
-		userStoriesTable.tableInsert(3);
+		userStoriesTable.tableInsert(1);
 
 		Sprints sprintsTable = new Sprints(myConn);
-		sprintsTable.tableInsert(3);
+		sprintsTable.tableInsert(1);
 
 		History history = new History(myConn);
-		history.tableInsert(50);
+		history.tableInsert(1);
 
 		Tickets ticketsTable = new Tickets(myConn);
-		ticketsTable.tableInsert(10);
+		ticketsTable.tableInsert(1);
 	}
 	
 }

@@ -119,7 +119,7 @@ public class DataGenerator {
 
     public int getRandomId(ArrayList <Integer> idList){
         random = new Random();
-        int id = idList.get(random.nextInt(idList.size()-1));
+        int id = idList.get(random.nextInt(idList.size()));
         return id;
     }
 }
