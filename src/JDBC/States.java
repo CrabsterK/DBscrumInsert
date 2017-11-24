@@ -17,7 +17,7 @@ public class States {
 	
 	public void tableInsert() {
 		System.out.println("Inserting states...");
-		String[] tab = {"TODO1", "TODO2", "TODO3", "TODO4"};
+		String[] tab = {"DONE", "TODO"};
 		statement = null;
 		
 		for(int quantity = 0; quantity < tab.length; quantity++) {

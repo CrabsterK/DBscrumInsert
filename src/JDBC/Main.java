@@ -14,6 +14,7 @@ public class Main {
 	private static String password = "root";
 	
 	public static void main(String[] args){
+		final int size = 150;
 		Connection myConn = null;
 		
 		try {
@@ -37,40 +38,40 @@ public class Main {
 		rolesTable.tableInsert();
 
 		SprintBacklogs sprintBacklogsTable = new SprintBacklogs(myConn);
-		sprintBacklogsTable.tableInsert(1);
+		sprintBacklogsTable.tableInsert(size);
 
 		SprintsStorage sprintsStorageTable = new SprintsStorage(myConn);
-		sprintsStorageTable.tableInsert(1);
+		sprintsStorageTable.tableInsert(size);
 
 		ProjectBacklogs projectBacklogsTable = new ProjectBacklogs(myConn);
-		projectBacklogsTable.tableInsert(1);
+		projectBacklogsTable.tableInsert(size);
 
 		Epics epicsTable = new Epics(myConn);
-		epicsTable.tableInsert(1);
+		epicsTable.tableInsert(size);
 
 		Employees employeesTable = new Employees(myConn);
-		employeesTable.tableInsert(1);
+		employeesTable.tableInsert(size);
 
 		Teams teamsTable = new Teams(myConn);
-		teamsTable.tableInsert(1);
+		teamsTable.tableInsert(size);
 
 		Jobs jobsTable = new Jobs(myConn);
-		jobsTable.tableInsert(1);
+		jobsTable.tableInsert(size);
 
 		Projects projectsTable = new Projects(myConn);
-		projectsTable.tableInsert(1);
+		projectsTable.tableInsert(size);
 
 		UserStories userStoriesTable = new UserStories(myConn);
-		userStoriesTable.tableInsert(1);
+		userStoriesTable.tableInsert(size);
 
 		Sprints sprintsTable = new Sprints(myConn);
-		sprintsTable.tableInsert(1);
+		sprintsTable.tableInsert(size);
 
 		History history = new History(myConn);
-		history.tableInsert(1);
+		history.tableInsert(size);
 
 		Tickets ticketsTable = new Tickets(myConn);
-		ticketsTable.tableInsert(1);
+		ticketsTable.tableInsert(size);
 	}
 	
 }

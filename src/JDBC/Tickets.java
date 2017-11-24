@@ -46,22 +46,10 @@ public class Tickets {
 
             try {
                 statement = myConn.prepareStatement(sql);
-                if(dataGen.randBetween(1, 100) < dataGen.nullPercent) {
-                    statement.setString(1, null);
-                }
-                else statement.setInt(1, idE);
-                if(dataGen.randBetween(1, 100) < dataGen.nullPercent) {
-                    statement.setString(2, null);
-                }
-                else statement.setInt(2, idSp);
-                if(dataGen.randBetween(1, 100) < dataGen.nullPercent) {
-                    statement.setString(3, null);
-                }
-                else statement.setInt(3, idT);
-                if(dataGen.randBetween(1, 100) < dataGen.nullPercent) {
-                    statement.setString(4, null);
-                }
-                else statement.setInt(4, idSt);
+                statement.setInt(1, idE);
+                statement.setInt(2, idSp);
+                statement.setInt(3, idT);
+                statement.setInt(4, idSt);
                 statement.setString(5, desc);
                 statement.executeUpdate();
             } catch (SQLException e1) {
