@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class Main {
-	
+
 	//private static String url = "jdbc:mysql://sql11.freemysqlhosting.net/sql11204078";
 	//private static String user = "sql11204078";
 	//private static String password = "m5vyibFsDT";
@@ -12,11 +12,11 @@ public class Main {
 	private static String url = "jdbc:mysql://localhost:3306/scrum";
 	private static String user = "root";
 	private static String password = "root";
-	
+
 	public static void main(String[] args){
 		final int size = 150;
 		Connection myConn = null;
-		
+
 		try {
 			myConn = DriverManager.getConnection(url, user, password);
 			System.out.println("Initiation OK");
@@ -40,8 +40,8 @@ public class Main {
 		SprintBacklogs sprintBacklogsTable = new SprintBacklogs(myConn);
 		sprintBacklogsTable.tableInsert(size);
 
-		SprintsStorage sprintsStorageTable = new SprintsStorage(myConn);
-		sprintsStorageTable.tableInsert(size);
+		//SprintsStorage sprintsStorageTable = new SprintsStorage(myConn);
+		//sprintsStorageTable.tableInsert(size);
 
 		ProjectBacklogs projectBacklogsTable = new ProjectBacklogs(myConn);
 		projectBacklogsTable.tableInsert(size);
@@ -73,5 +73,5 @@ public class Main {
 		Tickets ticketsTable = new Tickets(myConn);
 		ticketsTable.tableInsert(size);
 	}
-	
+
 }

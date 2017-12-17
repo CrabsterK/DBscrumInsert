@@ -18,11 +18,12 @@ public class SprintsStorage {
 	public void tableInsert(int amount) {
 		System.out.println("Inserting "+amount+" SprintsStorage...");
 		statement = null;
-		sql = "INSERT INTO SprintsStorage (SprintName,SprintTime,IdProject,IdSprintBacklog,ArchiveDate) VALUES (?, ?, ?, ?, ?);";
+		sql = "INSERT INTO SprintsStorage (SprintName,SprintTime,IdProject,IdSprintBacklog,StartDate,ArchiveDate) VALUES (?, ?, ?, ?, ?, ?);";
 
 		for(int quantity = 1; quantity <= amount; quantity++) {
 			String name = dataGen.makeWord(4, 15);
-			String date = dataGen.makeDate(2000, 2016);
+			String startDate = dataGen.makeDate(2015, 2016);
+			String archDate = dataGen.makeDate(2017, 2018);
 			int idproject = dataGen.randBetween(1, 10);
 			int idsprintbacklog = dataGen.randBetween(1, 10);
 
@@ -32,7 +33,8 @@ public class SprintsStorage {
 				statement.setInt(2, SPRINT_TIME);
 				statement.setInt(3, idproject);
 				statement.setInt(4, idsprintbacklog);
-				statement.setString(5, date);
+				statement.setString(5, startDate);
+				statement.setString(6, archDate);
 				statement.executeUpdate();
 			} catch (SQLException e1) {
 				e1.printStackTrace();

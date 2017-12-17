@@ -30,27 +30,23 @@ public class Tickets {
         sql = "SELECT IdType FROM TicketTypes;";
         ArrayList<Integer> idPTyleList = dataGen.getIdList(myConn, sql, "IdType");
 
-        sql = "SELECT IdState FROM States;";
-        ArrayList<Integer> idStateList = dataGen.getIdList(myConn, sql, "IdState");
 
-
-
-        sql = "INSERT INTO Tickets (IdEmployer, IdSprint, IdType, IdState, TicketDesc) VALUES (?, ?, ?, ?, ?);";
+        sql = "INSERT INTO Tickets (IdEmployer, IdSprint, IdType, TicketDesc, TicketStartDate) VALUES (?, ?, ?, ?, ?);";
 
         for(int quantity = 1; quantity <= amount; quantity++) {
             int idE = dataGen.getRandomId(idEmpList);
             int idSp = dataGen.getRandomId(idSprintList);
             int idT = dataGen.getRandomId(idPTyleList);
-            int idSt = dataGen.getRandomId(idStateList);
             String desc = dataGen.makeDesc(8, 50);
+            String startDate = dataGen.makeDate(2017, 2018);
 
             try {
                 statement = myConn.prepareStatement(sql);
                 statement.setInt(1, idE);
                 statement.setInt(2, idSp);
                 statement.setInt(3, idT);
-                statement.setInt(4, idSt);
-                statement.setString(5, desc);
+                statement.setString(4, desc);
+                statement.setString(5, startDate);
                 statement.executeUpdate();
             } catch (SQLException e1) {
                 e1.printStackTrace();
