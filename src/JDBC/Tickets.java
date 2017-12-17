@@ -31,7 +31,7 @@ public class Tickets {
         ArrayList<Integer> idPTyleList = dataGen.getIdList(myConn, sql, "IdType");
 
 
-        sql = "INSERT INTO Tickets (IdEmployer, IdSprint, IdType, TicketDesc, TicketStartDate) VALUES (?, ?, ?, ?, ?);";
+        sql = "INSERT INTO Tickets (IdEmployer, IdSprint, IdType, TicketDesc) VALUES (?, ?, ?, ?);";
 
         for(int quantity = 1; quantity <= amount; quantity++) {
             int idE = dataGen.getRandomId(idEmpList);
@@ -46,7 +46,6 @@ public class Tickets {
                 statement.setInt(2, idSp);
                 statement.setInt(3, idT);
                 statement.setString(4, desc);
-                statement.setString(5, startDate);
                 statement.executeUpdate();
             } catch (SQLException e1) {
                 e1.printStackTrace();
