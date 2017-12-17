@@ -14,7 +14,7 @@ public class Main {
 	private static String password = "root";
 
 	public static void main(String[] args){
-		final int size = 150;
+		final int size = 10;
 		Connection myConn = null;
 
 		try {
@@ -39,9 +39,6 @@ public class Main {
 
 		SprintBacklogs sprintBacklogsTable = new SprintBacklogs(myConn);
 		sprintBacklogsTable.tableInsert(size);
-
-		//SprintsStorage sprintsStorageTable = new SprintsStorage(myConn);
-		//sprintsStorageTable.tableInsert(size);
 
 		ProjectBacklogs projectBacklogsTable = new ProjectBacklogs(myConn);
 		projectBacklogsTable.tableInsert(size);
@@ -72,6 +69,15 @@ public class Main {
 
 		Tickets ticketsTable = new Tickets(myConn);
 		ticketsTable.tableInsert(size);
+
+		TicketStatesHistory ticketStatesHistory = new TicketStatesHistory(myConn);
+		ticketStatesHistory.tableInsert(size);
+
+		SprintsStorage sprintsStorageTable = new SprintsStorage(myConn);
+		sprintsStorageTable.tableInsert(size);
+
+		TicketsHistory ticketsHistory = new TicketsHistory(myConn);
+		ticketsHistory.tableInsert(size);
 	}
 
 }
